@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Recommendation </title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-MQKkvV4oDfF8odHkt+nA1U6Zz5E9fS9ce3Ht9OXLVo3RK7hGtvJjLrN1n2ITqW7r" crossorigin="anonymous">
+
+    <!-- Font Awesome for Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="bg-white">
+
+    <div class="d-flex justify-content-center align-items-center min-vh-100">
+
+        <!-- Card for Content -->
+        <div class="card shadow-lg p-5 rounded" style="width: 100%; max-width: 600px; background-color: #2C3E50; border-radius: 15px;">
+
+            <!-- Header -->
+            <h1 class="text-center text-white mb-4">Project Recommendation </h1>
+
+            <!-- Option Buttons for "Enter Skills" and "Upload Resume" -->
+            <div class="d-flex justify-content-between mb-4">
+                <button id="enter-skills-btn" class="btn btn-lg btn-outline-light w-48" onclick="toggleForm('skills')">
+                    <i class="fas fa-keyboard"></i> Enter Skills
+                </button>
+                <button id="upload-resume-btn" class="btn btn-lg btn-outline-light w-48" onclick="toggleForm('resume')">
+                    <i class="fas fa-upload"></i> Upload Resume
+                </button>
+            </div>
+            <div id="skills-form" class="form" style="display: none; color: white;">
+                <h3 class="text-center mb-3">Enter Your Skills</h3>
+                <form action="/submit_skills" method="POST">
+                    
+                    
+                    <div class="mb-3">
+                        <!-- Dropdown for selecting skills -->
+                        <select id="skills-dropdown" class="form-control">
+                            <option value="" disabled selected>Select a Skill</option>
+                            {% for skill in all_skills %}
+                            <option value="{{ skill }}">{{ skill }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+            
+                    <div class="mb-3"> 
+                        <!-- Textbox for entering skills -->
+                        <input type="text" name="skills" id="skills" class="form-control" placeholder="Enter skills, separated by commas" required>
+                    </div>
+            
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+                    </div>
+                </form>
+            </div>
+            
+            
+            
+            
+            
+            
+
+
+
+<!-- Resume Upload Form -->
+<div id="resume-form" class="form" style="display: none; color: white;">
+    <h3 class="text-center mb-3">Upload Your Resume</h3>
+    <form action="/upload_resume" method="POST" enctype="multipart/form-data">
+        <div class="mb-3">
+            <input type="file" name="resume" id="resume" class="form-control" accept=".pdf,.docx,.txt" required>
+        </div>
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+        </div>
+    </form>
+</div>
+
+            
+        </div>
+
+    </div>
+
+    <!-- Bootstrap JS and Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz4fnFO9gybYbPbf4h5Dg6h9Qm2vo2LkF5U0k6xaAdzh1vhZyXGfISXojAd" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-KyZXEJv3mNYaGK5H6QtjZ9fTy5LtLNjLhElChm1m8P2yz4ck4lbzLkrIYFaPe6OP" crossorigin="anonymous"></script>
+
+
+    <!-- Custom Script -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
