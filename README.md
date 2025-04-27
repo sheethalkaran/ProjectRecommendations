@@ -8,7 +8,6 @@ A web-based application that utilizes Natural Language Processing (NLP) and Mach
 - Machine Learning
 - Natural Language Processing (NLP)
 - TF-IDF & Cosine Similarity
-- SQL
 - HTML, CSS, JavaScript
 
 ## Features
